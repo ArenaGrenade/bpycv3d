@@ -12,3 +12,4 @@ build
 *.ignore.*
 
 ./docs/_*
+*.zip
