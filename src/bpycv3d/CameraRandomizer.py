@@ -26,6 +26,7 @@ class CameraFollowPath(object):
         bpy.context.scene.frame_end = self.num_samples
             
         if not hasattr(self, "follow_path"): raise ValueError("follow_path attribute was not provided.")
+        if not hasattr(self, "target"): raise ValueError("target attribute was not provided.")
         
         if not hasattr(self, "camera"):
             camera_data = bpy.data.cameras.new(name='Follow Cam')
@@ -67,7 +68,7 @@ class CameraFollowPath(object):
     def step(self):
         bpy.context.scene.frame_set(self.current_frame)
         self.current_frame += 1
-        # self.camera.rotation_euler[2] = math.radians(random.randrange(-5, 5))
+        # self.camera.rotation_euler[2] += math.radians(random.randrange(-5, 5))
         # This following will allow frames to loop over.
         if self.current_frame >= self.num_samples:
             self.current_frame = 0

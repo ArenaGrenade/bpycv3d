@@ -7,6 +7,16 @@ import numpy as np
 
 class DataCapture(object):
     def __init__(self, config, custom_function=None, camera_randomizer=None):
+        """_summary_
+
+        Args:
+            config (_type_): _description_
+            custom_function (_type_, optional): _description_. Defaults to None.
+            camera_randomizer (_type_, optional): _description_. Defaults to None.
+
+        Raises:
+            AttributeError: _description_
+        """        
         if isinstance(config, str) and os.path.isfile(config):
             with open(config, "r") as config_file:
                 config = json.load(config_file)
@@ -99,7 +109,7 @@ class DataCapture(object):
 
     def render(self, path):
         old_file_path = bpy.context.scene.render.filepath
-        bpy.context.scene.render.filepath = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/" + path.rsplit(".")[0])
+        bpy.context.scene.render.filepath = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/", path.rsplit(".")[0])
         print("Rendering single image to ", bpy.context.scene.render.filepath)
         
         bpy.context.scene.render.image_settings.use_preview = True
@@ -113,11 +123,11 @@ class DataCapture(object):
                 try:
                     if ret.ndim == 3 and ret.shape[-1] == 3:
                         # RGB Image
-                        path = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/" + path.rsplit(".")[0] + f"_{ret_name}" + ".npy")
+                        path = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/", path.rsplit(".")[0] + f"_{ret_name}" + ".npy")
                         print(f"Stored RGB {ret_name} at {path}")
                     elif ret.ndim == 2:
                         # Single Channel Image
-                        path = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/" + path.rsplit(".")[0] + f"_{ret_name}" + ".npy")
+                        path = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/", path.rsplit(".")[0] + f"_{ret_name}" + ".npy")
                         print(f"Stored RGB {ret_name} at {path}")
                     elif ret.ndim == 3 and ret.shape[-1] == 4:
                         # RGBA Image
@@ -136,7 +146,7 @@ class DataCapture(object):
     
     def render_multiple(self, path):
         old_file_path = bpy.context.scene.render.filepath
-        bpy.context.scene.render.filepath = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/" + path.rsplit(".")[0] + "_")
+        bpy.context.scene.render.filepath = os.path.join(os.path.dirname(bpy.data.filepath ), "./renders/", path.rsplit(".")[0] + "_")
         print("Rendering multiple images to ", bpy.context.scene.render.filepath + "***.exr")
         
         bpy.context.scene.render.image_settings.file_format = "OPEN_EXR_MULTILAYER"

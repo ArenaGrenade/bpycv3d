@@ -24,6 +24,8 @@ Hello World Script
 
 This would output two images - one MultiLayerEXR and another preview image of the complete render pipeline.
 
+.. _camera-randomization-starter:
+
 Camera Randomization Starter
 ----------------------------
 
