@@ -68,10 +68,13 @@ class CameraFollowPath(object):
     def step(self):
         bpy.context.scene.frame_set(self.current_frame)
         self.current_frame += 1
-        # self.camera.rotation_euler[2] += math.radians(random.randrange(-5, 5))
+        
         # This following will allow frames to loop over.
         if self.current_frame >= self.num_samples:
             self.current_frame = 0
+        
+        if self.randomly_orient_camera:
+            self.camera.rotation_euler[2] += math.radians(random.randrange(-90, 90))
 
     def __del__(self):
         try:

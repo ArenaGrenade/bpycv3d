@@ -5,13 +5,15 @@ API Reference
 
     This class enables camera to move along a path within the scene. Please refer to :ref:`camera-randomization-starter` for information on how to setup this path.
 
-    :param dict config: Configuration dict with valid keys being num_samples, forward_axis, up_axis, track_axis, follow_path, camera. All parameters except num_samples (int) are strings.
+    :param dict config: Configuration dict with valid keys being num_samples, forward_axis, up_axis, track_axis, follow_path, camera. All parameters except num_samples (int) and randomly_orient_camera (bool) are strings.
         
         Here, follow_path, target are compulsary keys - follow_path is the name of the curve created in the scene that the camera is to attach to, while target is the name of the object that the camera is to look at always.
 
         num_samples denotes the number of frames in the output and defaults to 10.
 
         forward_axis and track_axis can be "FORWARD_X", "FORWARD_Y", "FORWARD_Z", "TRACK_NEGATIVE_X", "TRACK_NEGATIVE_Y", "TRACK_NEGATIVE_Z". For further details on these values please refer to `Blender Docs <https://docs.blender.org/api/current/bpy.types.FollowPathConstraint.html#bpy.types.FollowPathConstraint>`_. up_axis can be "UP_X", "UP_Y", "UP_Z".
+
+        randomly_orient_camera rotates the camera left/right on the path randomly to introduce some variation.
         
         Note: If this is your first time running the script please do not set camera, allow the module to create its own camera with the right configuration, after which you can refer to that camera here using the name of that camera object in blender.
 
